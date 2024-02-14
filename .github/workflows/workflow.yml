@@ -36,12 +36,9 @@ jobs:
           echo test, and deploy your project.
 
       - name: Run command on remote server
-        uses: D3rHase/ssh-command-action@v0.2.2
+        uses: webfactory/ssh-agent@v0.5.1
+
         with:
-          host: ${{secrets.SSH_HOST}}
-          user: ${{secrets.SSH_USER}}
-          private_key: ${{secrets.SSH_PRIVATE_KEY}}
-          command: |
-            cd ${{ secrets.PROJECT_FOLDER }};
-            git checkout master;
-            git pull;
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+        run: ssh -o StrictHostKeyChecking=no studioatom.beget.tech "cd ${{ secrets.PROJECT_FOLDER }}; git checkout master; git pull;"
