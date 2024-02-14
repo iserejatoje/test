@@ -1,2 +1,2 @@
 <?php
-echo $_SERVER['DOCUMENT_ROOT'];
+echo 'GitHub actions is working!';
