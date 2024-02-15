@@ -26,5 +26,6 @@ jobs:
       - name: Deploy to server
         run: |
           echo "Starting deployment..."
+          ssh -T git@github.com
           ssh -i ~/test.atom-dev.ru/public_html/.ssh/id_rsa -o StrictHostKeyChecking=no studioatom_ci@studioatom.beget.tech "git checkout master && git pull origin master"
           echo "Deployment completed."
