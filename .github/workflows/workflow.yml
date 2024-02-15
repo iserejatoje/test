@@ -26,5 +26,5 @@ jobs:
       - name: Deploy to server
         run: |
           echo "Starting deployment..."
-          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no studioatom_ci@studioatom.beget.tech "git pull origin master"
+          ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no studioatom_ci@studioatom.beget.tech
           echo "Deployment completed."
