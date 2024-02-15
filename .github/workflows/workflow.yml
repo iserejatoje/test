@@ -14,7 +14,7 @@ jobs:
         with:
           host: github.com
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: echos2
+      - name: Git Config
         run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Just Pull
-        run: git checkout master && git pull && exit
+        run: git init && git checkout master && git pull && exit
