@@ -17,3 +17,5 @@ jobs:
 
       - name: Just Pull
         run: git checkout master && git pull && exit
+      - name: echos
+        run: echo ${{ secrets.PROJECT_FOLDER }}
