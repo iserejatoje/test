@@ -1,2 +1,2 @@
 <?php
-echo 'GitHub actions is working!!!!!!!!!';
+echo 'GitHub actions is working!';
