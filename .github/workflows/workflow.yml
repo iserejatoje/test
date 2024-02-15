@@ -11,18 +11,20 @@ on:
       - master
 
 jobs:
-  clone:
-    name: Pull
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v1
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
+
+      - name: Deploy to sandbox via rsync
+        uses: trendyminds/github-actions-rsync@master
         with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: Just Pull
-        run: |
-          git checkout master;
-          git pull;
+          RSYNC_OPTIONS: -avzr --delete --exclude node_modules --exclude '.git*'
+          RSYNC_TARGET: /test.atom-dev.ru/public_html/
+          RSYNC_SOURCE: ./
+        env:
+          SSH_PRIVATE_KEY: ${{secrets.SSH_PRIVATE_KEY}}
+          SSH_USERNAME: ${{secrets.SSH_USER}}
+          SSH_HOSTNAME: ${{secrets.SSH_HOST}}
