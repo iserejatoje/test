@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Setup SSH
-        uses: D3rHase/ssh-command-action@v0.2.2
+        uses: MrSquaare/ssh-setup-action@v1
         with:
-          host: ${{secrets.SSH_HOST}}
-          user: ${{secrets.SSH_USER}}
-          private_key: ${{secrets.SSH_PRIVATE_KEY}}
-          command: |
-            cd ${{ secrets.PROJECT_FOLDER }};
-            git checkout master;
-            git pull;
+          host: github.com
+          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Just Pull
+        run: |
+          cd ${{ secrets.PROJECT_FOLDER }};
+          git checkout master;
+          git pull;
