@@ -11,17 +11,16 @@ on:
       - master
 
 jobs:
-  clone:
-    name: Pull
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup SSH
-        uses: MrSquaare/ssh-setup-action@v1
+      - uses: actions/checkout@v3
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@6.0.0
         with:
-          host: github.com
-          private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-      - name: Just Pull
-        run: |
-          cd ~/test.atom-dev.ru/public_html/
-          git checkout master;
-          git pull;
+          switches: -avzr --delete
+          path: ./
+          remote_path: ${{ secrets.DEPLOY_PATH }}
+          remote_host: ${{ secrets.SSH_HOST }}
+          remote_user: ${{ secrets.SSH_USER }}
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
