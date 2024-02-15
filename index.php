@@ -1,2 +1,2 @@
 <?php
-echo 'Silent';
+echo 'Silent!!';
