@@ -16,4 +16,4 @@ jobs:
           private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Just Pull
-        run: git pull
+        run: cd ${{ secrets.PROJECT_FOLDER }} && git checkout master && git pull && exit
